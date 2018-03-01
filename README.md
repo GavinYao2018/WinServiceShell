@@ -29,7 +29,9 @@
 6. 将业务组件需要使用到的其他配置添加到Common.WinServices.exe.config
 
 ![image](https://github.com/GavinYao2018/first/blob/master/pic/winserviceshell/add_settings.png)
+<br>
 7. 安装服务，以管理员身份运行Install.cmd
+<br>
 8. 卸载服务，以管理员身份运行UnInstall.cmd
 
 #### 配置说明
