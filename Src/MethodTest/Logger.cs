@@ -5,6 +5,15 @@ namespace System
     public static class Logger
     {
         static string logPath = "d:\\";
+
+        static Logger()
+        {
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
+        }
+
         public static void Info(string fileName, string content)
         {
             string logFullName = Path.Combine(logPath, fileName);

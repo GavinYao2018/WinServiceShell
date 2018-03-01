@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Appsettings</name>
+    </assembly>
+    <members>
+        <member name="T:Appsettings.AppSettingsBase">
+            <summary>
+            基类
+            </summary>
+        </member>
+        <member name="P:Appsettings.AppSettingsBase.XmlPaths">
+            <summary>
+            自定义配置文件物理路径
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsBase.ChangeValueType(System.Object,System.Type)">
+            <summary>
+            转换数据类型
+            </summary>
+            <param name="value"></param>
+            <param name="conversionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsBase.ChangeValueType(System.Object,System.Type,System.IFormatProvider)">
+            <summary>
+            转换数据类型
+            </summary>
+            <param name="value"></param>
+            <param name="conversionType"></param>
+            <param name="provider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsBase.valueNaullable(System.Type)">
+            <summary>
+            判断该类型是否是可为空值的数据类型
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsBase.GetDisconfClientInfo">
+            <summary>
+            获取注册的客户端信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Appsettings.AppSettingsBase.ConfigPath">
+            <summary>
+            返回配置文件所在路径
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsBase.Log(System.Exception)">
+            <summary>
+            记录异常日志到系统日志中
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="T:Appsettings.DisconfClientInfo">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientInfo.FilePath">
+            <summary>
+            配置文件存放路径
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientInfo.Environment">
+            <summary>
+            环境，如qa, dev, local, online等，必须是disconf管理端存在的
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientInfo.Items">
+            <summary>
+            需要下载的App
+            </summary>
+        </member>
+        <member name="T:Appsettings.DisconfClientItem">
+            <summary>
+            配置项
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientItem.AppName">
+            <summary>
+            应用名称
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientItem.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Appsettings.DisconfClientItem.Files">
+            <summary>
+            文件名，多个用,隔开
+            </summary>
+        </member>
+        <member name="F:Appsettings.AppSettingsClass`1.TTypeCache">
+            <summary>
+            TEntity type的缓存类
+            </summary>
+        </member>
+        <member name="P:Appsettings.AppSettingsClass`1.Key">
+            <summary>
+            缓存Key
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetEntity(System.String)">
+            <summary>
+            获取自定义配置实体信息
+            </summary>
+            <param name="xmlSubPath">配置文件中的相对位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetEntity(System.Func{`0,System.Boolean},System.String)">
+            <summary>
+            获取自定义配置实体信息
+            </summary>
+            <param name="predicate"></param>
+            <param name="xmlSubPath">配置文件中的相对位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetEntityList(System.String)">
+            <summary>
+            获取自定义配置实体信息集合
+            </summary>
+            <param name="xmlSubPath">配置文件中的相对位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetEntityList(System.Func{`0,System.Boolean},System.String)">
+            <summary>
+            获取自定义配置实体信息集合
+            </summary>
+            <param name="predicate"></param>
+            <param name="xmlSubPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.LoadToCache(System.String)">
+            <summary>
+            加载自定义配置到缓存
+            </summary>
+            <param name="xmlSubPath">配置文件中的相对位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetAppSettings(System.String)">
+            <summary>
+            加载自定义配置列表
+            </summary>
+            <param name="xmlSubPath">配置文件中的相对位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.BuildList(System.Collections.Generic.List{System.Xml.Linq.XElement},System.Type)">
+            <summary>
+            集合
+            </summary>
+            <param name="elements"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.BuildObj(System.Collections.Generic.List{System.Xml.Linq.XElement},System.Type)">
+            <summary>
+            单个对象
+            </summary>
+            <param name="elements"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.BuildObj(System.Type,System.Reflection.PropertyInfo[],System.Xml.Linq.XElement)">
+            <summary>
+            单个对象
+            </summary>
+            <param name="type"></param>
+            <param name="Propertes"></param>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetClassName">
+            <summary>
+            获取类名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetPropertys">
+            <summary>
+            获取类属性
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetDefaultValue(System.Object,System.Type)">
+            <summary>
+            获取默认值
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsClass`1.GetTType``1">
+            <summary>
+            获取对象的名称
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Appsettings.AppSettingsManager">
+            <summary>
+            提供对自定义应用程序配置文件的访问（支持深层节点）
+            <para>1、必须在配置文件.config中的节点configSections添加&lt;section name="Disconf" type="System.Configuration.DictionarySectionHandler"/&gt;，再添加自定义节点Disconf，如
+            <para> &lt;Disconf Environment="dev" FilePath="D:\Projects\钱途公共类库\SourceCode\Disconf.Net\Config"&gt;</para>
+            <para>    &lt;Item AppName = "YaoTest" Version="1_0_0_1" Files="FrontConfig.xml,aa.xml"&gt;&lt;/Item&gt;</para>
+            <para>    &lt;Item AppName = "oas-management" Version="1_0_0_0" Files="config.properties"&gt;&lt;/Item&gt;</para>
+            <para> &lt;/Disconf&gt;</para>
+            </para>
+            <para>2、自定义配置文件必须是以AppSettings节点开始。</para>
+            <para>3、同时确保自定义配置文件设置了对应的读取权限。</para>
+            
+            使用方法
+            <para>1、add键值类型的节点，直接通过Key获取值：AppSettingsManager.AppSettings["name"]</para>
+            <para>2、其他类型节点，可通过节点名称和属性名称获取属性值：AppSettingsManager.GetAttributesValue("Person", "Name")</para>
+            <para>3、和实体一致的节点，可直接传入实体类型获取对应的节点信息：AppSettingsManager.GetEntity&lt;Person&gt;()</para>
+            </summary>
+        </member>
+        <member name="P:Appsettings.AppSettingsManager.AppSettings">
+            <summary>
+            获取自定义配置的数据。
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetAttributesValue(System.String,System.String)">
+            <summary>
+            获取自定义配置属性值
+            </summary>
+            <param name="name">节点名称</param>
+            <param name="attributes">属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetEntity``1(System.String)">
+            <summary>
+            根据实体获取对应的自定义配置，实体名和属性要和节点一致
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetEntity``1(System.Func{``0,System.Boolean},System.String)">
+            <summary>
+            根据实体获取对应的自定义配置，实体名和属性要和节点一致
+            </summary>
+            <typeparam name="T">条件</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetEntityList``1(System.String)">
+            <summary>
+            根据实体获取对应的自定义配置，实体名和属性要和节点一致
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xmlSubPath">xml路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetEntityList``1(System.Func{``0,System.Boolean},System.String)">
+            <summary>
+            根据实体获取对应的自定义配置，实体名和属性要和节点一致
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="predicate">条件</param>
+            <param name="xmlSubPath">xml路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.InitAppSettingsCache">
+            <summary>
+            设置自定义配置到缓存中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.InitAppSettingsCache``1">
+            <summary>
+            设置自定义配置到缓存中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.GetExePath">
+            <summary>
+            获取程序执行的目录（包括站点、应用程序）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsManager.BuildDBConnString(System.String)">
+            <summary>
+            在数据库连接字符串中插入app=xxx;（xxx=当前程序运行的目录，“.”、“ ”被替换成“_”）。若已存在app配置，则忽略
+            </summary>
+            <param name="connString"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Appsettings.AppSettingsManager.ConfigPath">
+            <summary>
+            返回配置文件所在路径
+            </summary>
+        </member>
+        <member name="T:Appsettings.AppSettingsUtils">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsUtils.LoadXml(System.String)">
+            <summary>
+            读取xml
+            如果抛出资源未释放异常，则尝试读取3次，每次间隔50ms
+            若再次抛出异常，则将此异常抛出，不再尝试
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsUtils.LoadProperties(System.String)">
+            <summary>
+            读取properties
+            如果抛出资源未释放异常，则尝试读取3次，每次间隔50ms
+            若再次抛出异常，则将此异常抛出，不再尝试
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsUtils.LoadResource``1(System.Func{``0})">
+            <summary>
+            读取资源
+            如果抛出资源未释放异常，则尝试读取3次，每次间隔50ms
+            若再次抛出异常，则将此异常抛出，不再尝试
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Appsettings.AppSettingsValue.Key">
+            <summary>
+            缓存Key
+            </summary>
+        </member>
+        <member name="P:Appsettings.AppSettingsValue.AppSettings">
+            <summary>
+            获取自定义配置的数据。
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingsValue.LoadToCache">
+            <summary>
+            加载键值类型的自定义配置到缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsValue.GetAppSettings">
+            <summary>
+            加载键值类型的自定义配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingsValue.ReadFromXML(System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            读取xml中的key value
+            </summary>
+            <param name="nv"></param>
+            <param name="xmlPath"></param>
+        </member>
+        <member name="M:Appsettings.AppSettingsValue.ReadFromProperties(System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            读取properties中的key value
+            </summary>
+            <param name="nv"></param>
+            <param name="xmlPath"></param>
+        </member>
+        <member name="P:Appsettings.AppSettingXml.Key">
+            <summary>
+            缓存Key
+            </summary>
+        </member>
+        <member name="M:Appsettings.AppSettingXml.GetAttributesValue(System.String,System.String)">
+            <summary>
+            通过节点名称和Attributes属性名称获取Attributes值
+            </summary>
+            <param name="name">节点名称</param>
+            <param name="attributes">Attributes属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingXml.LoadToCache">
+            <summary>
+            加载自定义配置到缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Appsettings.AppSettingXml.GetAppSettings">
+            <summary>
+            加载自定义配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Appsettings.ConfigSettingAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Appsettings.ConfigSettingAttributes.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Appsettings.ConfigSettingAttributes.XmlPath">
+            <summary>
+            Xml路径
+            </summary>
+        </member>
+        <member name="M:System.CommonExtension.EqualsIgnoreCase(System.String,System.String)">
+            <summary>
+            确定此字符串是否与指定的 System.String 对象具有相同的值，忽略大小写
+            </summary>
+            <param name="thisValue"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.CommonExtension.EndsWithIgnoreCase(System.String,System.String)">
+            <summary>
+            是否以value结尾，忽略大小写
+            </summary>
+            <param name="thisValue"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

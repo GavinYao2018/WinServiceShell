@@ -72,7 +72,6 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\ServiceHelper.cs" />
     <Compile Include="Common\SettingHelper.cs" />
-    <Compile Include="Common\StartInitExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
