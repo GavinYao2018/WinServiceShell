@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppSettings Cache="true">
+
+  <!--ServiceName必须与ServiceNameSetting.xml中的ServiceName一致，否则加载不到内容-->
+  <CommonWinService ServiceName="CommonJobExample">
+    <ServiceStart>
+      <!--
+      1.必须使用非静态类
+      2.必须使用无参构造方法，无参方法
+      -->
+      <!--<OnStartItem Assembly="" ClassName="" MethodName="" ></OnStartItem>-->
+    </ServiceStart>
+
+    <ServiceStop>
+      <!--
+      1.必须使用非静态类
+      2.必须使用无参构造方法，无参方法
+      -->
+      <!--<OnStopItem Assembly="" ClassName="" MethodName="" ></OnStopItem>-->
+    </ServiceStop>
+
+    <!-- 定时服务 -->
+    <QuartzJob>
+      <!--1.必须继承Quartz.IJob-->
+      <JobItem JobKey="JobTest1" Assembly="Job.Test" ClassName="Job.Test.JobTest1" QuartzCron="0/5 * * * * ?" Parameters="yan,1"></JobItem>
+      <JobItem JobKey="JobTest12" Assembly="Job.Test" ClassName="Job.Test.JobTest1" QuartzCron="1/5 * * * * ?"></JobItem>
+      <JobItem JobKey="JobTest2" Assembly="Job.Test" ClassName="Job.Test.JobTest2" QuartzCron="0/10 * * * * ?" Parameters=""></JobItem>
+
+      <!--2.无须继承Quartz.IJob-->
+      <!--Parameters以英文逗号隔开，可为空。MethodName所接收参数类型必须为String，参数个数必须匹配-->
+      <JobItem JobKey="MethodTest1" Assembly="MethodTest" MethodName="MethodTest.MethodTest1.Write" QuartzCron="1/5 * * * * ?" Parameters="yao,3"></JobItem>
+      <JobItem JobKey="MethodTest12" Assembly="MethodTest" MethodName="MethodTest.MethodTest1.Write" QuartzCron="0/5 * * * * ?" Parameters="hui,6"></JobItem>
+      <JobItem JobKey="MethodTest2" Assembly="MethodTest" MethodName="MethodTest.MethodTest2.Write" QuartzCron="0/10 * * * * ?" Parameters=""></JobItem>
+    </QuartzJob>
+  </CommonWinService>
+
+</AppSettings>
