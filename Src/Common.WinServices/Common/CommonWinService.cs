@@ -38,19 +38,9 @@ namespace Common.WinServices.Common
         public string Assembly { get; set; }
 
         /// <summary>
-        /// 类名
-        /// </summary>
-        public string ClassName { get; set; }
-
-        /// <summary>
         /// 方法名
         /// </summary>
-        public string MethodName { get; set; }
-
-        /// <summary>
-        /// 静态方法
-        /// </summary>
-        public bool IsStaticMethod { get; set; }
+        public string MethodName { get; set; }        
     }
 
     public class QuartzJob
@@ -108,12 +98,7 @@ namespace Common.WinServices.Common
         /// 程序集
         /// </summary>
         public string Assembly { get; set; }
-
-        /// <summary>
-        /// 类名
-        /// </summary>
-        public string ClassName { get; set; }
-
+        
         /// <summary>
         /// 方法名
         /// </summary>

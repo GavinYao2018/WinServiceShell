@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MethodTest\Logger.cs">
+      <Link>Logger.cs</Link>
+    </Compile>
     <Compile Include="JobTest1.cs" />
     <Compile Include="JobTest2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Configuration;
 
 namespace MethodTest
 {
@@ -7,8 +7,9 @@ namespace MethodTest
     {
         public void Write()
         {
-            var str = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff")} {Guid.NewGuid().ToString("N")}\r\n";
-            File.AppendAllText("d:\\MethodTest2.txt", str);
+            var testKey = ConfigurationManager.AppSettings["TestKey"];
+            var str = $"{Guid.NewGuid().ToString("N")}, testkey={testKey}";
+            Logger.Info("MethodTest2.txt", str);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Common.WinServices.Common
             ISchedulerFactory sf = new Quartz.Impl.StdSchedulerFactory();
             ServiceHelper._sched = sf.GetScheduler();
             int jobCounter = 0;
-            var currentService = ServiceHelper.GetCurrentFrontpayWinService();
+            var currentService = ServiceHelper.GetCurrentWinService();
             if (currentService == null)
             {
                 logBuilder.AppendFormat("找不到【{0}】的配置", ServiceHelper.CurrentServiceName).AppendLine();
@@ -193,7 +193,7 @@ namespace Common.WinServices.Common
         /// 获取当前配置的Service
         /// </summary>
         /// <returns></returns>
-        public static CommonWinService GetCurrentFrontpayWinService()
+        public static CommonWinService GetCurrentWinService()
         {
             CommonWinService result = null;
             string currentServiceName = ServiceHelper.CurrentServiceName;
@@ -242,32 +242,36 @@ namespace Common.WinServices.Common
         private static void OnStartInit(StringBuilder logBuilder)
         {
             logBuilder.Append("【初始化开始】：").AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff"));
-            var currentService = ServiceHelper.GetCurrentFrontpayWinService();
+            var currentService = ServiceHelper.GetCurrentWinService();
             if (currentService != null)
             {
                 foreach (var osi in currentService.ServiceStart.OnStartItemList)
                 {
-                    if (!string.IsNullOrWhiteSpace(osi.Assembly) && !string.IsNullOrWhiteSpace(osi.ClassName) && !string.IsNullOrWhiteSpace(osi.MethodName))
+                    logBuilder.AppendFormat("Assembly:{0}, MethodName:{1} ", osi.Assembly, osi.MethodName);
+
+                    if (string.IsNullOrWhiteSpace(osi.Assembly) || string.IsNullOrWhiteSpace(osi.MethodName))
+                    {
+                        logBuilder.AppendLine("ServiceStart.OnStartItem配置中，Assembly和MethodName不能为空");
+                        continue;
+                    }
+                    try
                     {
                         var assembly = ServiceHelper.GetAssembly(osi.Assembly);
-                        var obj = assembly.CreateInstance(osi.ClassName);
-                        Type type = obj.GetType();
 
-                        string[] methodNameArr = osi.MethodName.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var mn in methodNameArr)
-                        {
-                            string method = mn.Trim();
-                            logBuilder.AppendFormat("【执行{0}.{1}】：{2}", osi.ClassName, method, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff")).AppendLine();
-                            var methodInfo = type.GetMethod(osi.MethodName);
-                            methodInfo.Invoke(obj, null);
-                        }
+                        var tupple = GetClassAndMethodName(osi.MethodName);
+                        var className = tupple.Item1;// 第一个为className
+                        var methodName = tupple.Item2;// 第一个为methodName
+
+                        var obj = assembly.CreateInstance(className);
+                        Type type = obj.GetType();
+                        
+                        var methodInfo = type.GetMethod(methodName);
+                        methodInfo.Invoke(obj, null);
+                        logBuilder.AppendFormat("执行完毕").AppendLine();
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        logBuilder.AppendFormat("Assembly：{0}", osi.Assembly).AppendLine();
-                        logBuilder.AppendFormat("ClassName：{0}", osi.ClassName).AppendLine();
-                        logBuilder.AppendFormat("MethodName：{0}", osi.MethodName).AppendLine();
-                        logBuilder.AppendLine("ServiceStart.OnStartItem配置中，Assembly，ClassName和MethodName不能为空");
+                        logBuilder.AppendFormat("执行异常：{0}", ex.ToString()).AppendLine();
                     }
                 }
             }
@@ -281,32 +285,37 @@ namespace Common.WinServices.Common
         private static void OnStopCollect(StringBuilder logBuilder)
         {
             logBuilder.Append("【任务回收开始】：").AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff"));
-            var currentService = ServiceHelper.GetCurrentFrontpayWinService();
+            var currentService = ServiceHelper.GetCurrentWinService();
             if (currentService != null)
             {
                 foreach (var osi in currentService.ServiceStop.OnStopItemList)
                 {
-                    if (!string.IsNullOrWhiteSpace(osi.Assembly) && !string.IsNullOrWhiteSpace(osi.ClassName) && !string.IsNullOrWhiteSpace(osi.MethodName))
+                    logBuilder.AppendFormat("Assembly:{0}, MethodName:{1} ", osi.Assembly, osi.MethodName);
+
+                    if (string.IsNullOrWhiteSpace(osi.Assembly) || string.IsNullOrWhiteSpace(osi.MethodName))
+                    {
+                        logBuilder.AppendLine("ServiceStop.OnStopItem配置中，Assembly，ClassName和MethodName不能为空");
+                        continue;
+                    }
+
+                    try
                     {
                         var assembly = ServiceHelper.GetAssembly(osi.Assembly);
-                        var obj = assembly.CreateInstance(osi.ClassName);
-                        Type type = obj.GetType();
 
-                        string[] methodNameArr = osi.MethodName.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var mn in methodNameArr)
-                        {
-                            string method = mn.Trim();
-                            logBuilder.AppendFormat("【执行{0}.{1}】：{2}", osi.ClassName, method, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff")).AppendLine();
-                            var methodInfo = type.GetMethod(osi.MethodName);
-                            methodInfo.Invoke(obj, null);
-                        }
+                        var tupple = GetClassAndMethodName(osi.MethodName);
+                        var className = tupple.Item1;// 第一个为className
+                        var methodName = tupple.Item2;// 第一个为methodName
+
+                        var obj = assembly.CreateInstance(className);
+                        Type type = obj.GetType();
+                        
+                        var methodInfo = type.GetMethod(methodName);
+                        methodInfo.Invoke(obj, null);
+                        logBuilder.AppendFormat("执行完毕").AppendLine();
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        logBuilder.AppendFormat("Assembly：{0}", osi.Assembly).AppendLine();
-                        logBuilder.AppendFormat("ClassName：{0}", osi.ClassName).AppendLine();
-                        logBuilder.AppendFormat("MethodName：{0}", osi.MethodName).AppendLine();
-                        logBuilder.AppendLine("ServiceStop.OnStopItem配置中，Assembly，ClassName和MethodName不能为空");
+                        logBuilder.AppendFormat("执行异常：{0}", ex.ToString()).AppendLine();
                     }
                 }
             }
@@ -330,6 +339,16 @@ namespace Common.WinServices.Common
                 ServiceHelper.AssemblyCollection[assemblyName] = assembly;
             }
             return assembly;
+        }
+
+        private static Tuple<string, string> GetClassAndMethodName(string methodName)
+        {
+            //如果执行的方法名不为空
+            var iIndex = methodName.LastIndexOf(".");
+            var className = methodName.Substring(0, iIndex);//将方法名给到类名
+            methodName = methodName.Substring(iIndex + 1); //留下方法名
+
+            return Tuple.Create<string, string>(className, methodName);
         }
     }
 }

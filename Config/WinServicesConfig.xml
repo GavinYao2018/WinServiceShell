@@ -8,7 +8,8 @@
       1.必须使用非静态类
       2.必须使用无参构造方法，无参方法
       -->
-      <!--<OnStartItem Assembly="" ClassName="" MethodName="" ></OnStartItem>-->
+      <OnStartItem Assembly="Job.Test" MethodName="Job.Test.JobTest1.OnStart"></OnStartItem>
+      <OnStartItem Assembly="MethodTest" MethodName="MethodTest.MethodTest1.OnStart"></OnStartItem>
     </ServiceStart>
 
     <ServiceStop>
@@ -16,7 +17,9 @@
       1.必须使用非静态类
       2.必须使用无参构造方法，无参方法
       -->
-      <!--<OnStopItem Assembly="" ClassName="" MethodName="" ></OnStopItem>-->
+      <OnStopItem Assembly="Job.Test" MethodName="Job.Test.JobTest1.OnStop"></OnStopItem>
+      <OnStopItem Assembly="MethodTest" MethodName="MethodTest.MethodTest1.OnStop"></OnStopItem>
+    
     </ServiceStop>
 
     <!-- 定时服务 -->

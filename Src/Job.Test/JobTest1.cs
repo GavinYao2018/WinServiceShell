@@ -1,9 +1,5 @@
 ﻿using Quartz;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Job.Test
 {
@@ -33,8 +29,18 @@ namespace Job.Test
 
         public void Write(string name, string i)
         {
-            var str = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff")} : name = {name}  i = {i} {Guid.NewGuid().ToString("N")}\r\n";
-            File.AppendAllText("d:\\JobTest1.txt", str);
+            var str = $"name = {name}, i = {i}, {Guid.NewGuid().ToString("N")}";
+            Logger.Info("JobTest1.txt", str);
+        }
+
+
+        public void OnStart()
+        {
+            Logger.Info("JobTest1.txt", "启动时执行");
+        }
+        public void OnStop()
+        {
+            Logger.Info("JobTest1.txt", "结束时执行");
         }
     }
 }
