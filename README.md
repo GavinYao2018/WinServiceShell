@@ -19,9 +19,10 @@
 2. 将业务组件拷贝至Common.WinServices发布目录下
 
 ![image](https://github.com/GavinYao2018/first/blob/master/pic/winserviceshell/publish.png)
+<br>
 3. 修改ServiceNameSetting.xml的ServiceName为项目名称
 
-![image](https://github.com/GavinYao2018/first/blob/master/pic/winserviceshell/config.png)
+![image](https://github.com/GavinYao2018/first/blob/master/pic/winserviceshell/service_name.png)
 4. 在节点QuartzJob中配置调度策略
 5. 若服务启动或停止需要执行其他任务，请配置节点ServiceStart，ServiceStop
 
