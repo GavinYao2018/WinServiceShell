@@ -15,13 +15,17 @@ namespace MethodTest
         {
             //int i = 0;
             //i = 5 / i;
-            Logger.Info("MethodTest1.txt", "启动时执行");
+
+            var msg = "启动时执行";
+            Logger.Info("MethodTest1.txt", msg);
         }
-        public void OnStop()
+        public void OnStop(string name, string i)
         {
             //int i = 0;
             //i = 5 / i;
-            Logger.Info("MethodTest1.txt", "结束时执行");
-        }        
+
+            var msg = $"结束时执行. name={name}, i={i}";
+            Logger.Info("MethodTest1.txt", msg);
+        }
     }
 }

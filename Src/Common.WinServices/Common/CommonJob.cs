@@ -21,7 +21,6 @@ namespace Common.WinServices.Common
 
         public void Execute(IJobExecutionContext context)
         {
-            StringBuilder logBuilder = new StringBuilder();
             try
             {
                 if (JobList.Count == 0) return;
@@ -35,8 +34,7 @@ namespace Common.WinServices.Common
             }
             catch (Exception ex)
             {
-                logBuilder.AppendFormat("{0}", ex.ToString()).AppendLine();
-                Logger.Log("CommonJob执行异常", logBuilder.ToString());
+                Logger.Error(ex, "CommonJob执行出错");
             }
         }
 

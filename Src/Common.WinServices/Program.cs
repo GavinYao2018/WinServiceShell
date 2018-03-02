@@ -28,7 +28,7 @@ namespace Common.WinServices
             logBuilder.Append("异常来源：").AppendLine(sender != null ? sender.ToString() : "");
             logBuilder.AppendLine("异常信息：");
             logBuilder.AppendLine(e.ExceptionObject.ToString());
-            Logger.Log("定时任务_未处理异常", logBuilder.ToString());
+            Logger.Error(null, logBuilder.ToString());
         }
     }
 }

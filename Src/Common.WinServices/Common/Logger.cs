@@ -1,24 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace Common.WinServices.Common
 {
     public static class Logger
-    { 
-        public static void Log(string logName, string message)
+    {
+        public static void Info(string message)
         {
-            message = string.Format("{0}{2}{1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff"), message, Environment.NewLine);
-            string filepath = Path.Combine(ConfigurationManager.AppSettings["TxtLogPath"], DateTime.Now.ToString("yyyy-MM-dd"), logName);
-            if (!Directory.Exists(filepath))
+            string logPath = ConfigurationManager.AppSettings["LogPath"];
+            if (!Directory.Exists(logPath))
             {
-                Directory.CreateDirectory(filepath);
+                Directory.CreateDirectory(logPath);
             }
-            string filename = string.Format("{0}{1}{2}.txt", filepath, Path.DirectorySeparatorChar, DateTime.Now.ToString("HH"));
-            File.AppendAllText(filename, message + Environment.NewLine, System.Text.Encoding.UTF8);
+            string fileName = Path.Combine(logPath, "WinServiceShell.log");
+
+            message = string.Format("{0} {1}{2}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff"), message, Environment.NewLine);
+            WireLog(fileName, message);
+        }
+
+        public static void Error(Exception ex, string message = null)
+        {
+            string logPath = ConfigurationManager.AppSettings["LogPath"];
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
+            string fileName = Path.Combine(logPath, "WinServiceShell_Error.log");
+
+            var exMsg = ex == null ? "" : ex.ToString();
+
+            message = string.Format("{0} {1} {2}{3}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff"), message, exMsg, Environment.NewLine);
+            WireLog(fileName, message);
+        }
+
+        private static void WireLog(string fileName, string message)
+        {
+            try
+            {
+                File.AppendAllText(fileName, message, Encoding.UTF8);
+            }
+            catch (Exception ex)
+            {
+                message = $"{message}, {ex.ToString()}";
+                try
+                {
+                    string logPath = ConfigurationManager.AppSettings["LogPath"];
+                    if (!Directory.Exists(logPath))
+                    {
+                        Directory.CreateDirectory(logPath);
+                    }
+                    fileName = Path.Combine(logPath, "WireLog_Error.log");
+                    File.AppendAllText(fileName, message, Encoding.UTF8);
+                }
+                finally
+                { }
+            }
         }
     }
 }

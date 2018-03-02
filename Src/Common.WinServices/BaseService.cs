@@ -22,40 +22,26 @@ namespace Common.WinServices
 
         protected override void OnStart(string[] args)
         {
-            string logName = ServiceHelper.LogName;
-            StringBuilder logBuilder = new StringBuilder();
             try
             {
-                ServiceHelper.StartJob(logBuilder);
+                ServiceHelper.OnStartInit();
+                ServiceHelper.StartJob();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logName += "_异常";
-                logBuilder.AppendLine("发生异常：").AppendLine(ex.ToString());
-            }
-            finally
-            {
-                Logger.Log(logName, logBuilder.ToString());
+                Logger.Error(ex, "OnStart执行异常");
             }
         }
 
         protected override void OnStop()
         {
-            string logName = ServiceHelper.LogName;
-            StringBuilder logBuilder = new StringBuilder();
             try
             {
-                ServiceHelper.StopJob(logBuilder);
-                logBuilder.AppendLine("【定时任务结束】");
+                ServiceHelper.StopJob();
             }
             catch (Exception ex)
             {
-                logName += "_异常";
-                logBuilder.AppendLine("异常：").AppendLine(ex.ToString());
-            }
-            finally
-            {
-                Logger.Log(logName, logBuilder.ToString());
+                Logger.Error(ex, "OnStop执行异常");
             }
         }
     }

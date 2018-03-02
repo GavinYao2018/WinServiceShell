@@ -52,13 +52,12 @@ CommonWinService，属性ServiceName必须与ServiceNameSetting.xml的ServiceNam
 |节点 | 子节点 | 属性 | 说明|
 |---|---|---|---|
 | ServiceStart | | | 服务启动时执行|
-| | OnStartItem | | 执行任务项|
+| | MethodItem | | 执行任务项|
 | | | Assembly | 程序集名称|
 | | | MethodName | 要执行方法名，FullName |
+| | | Parameters | 传递给调度任务方法的参数，使用英文逗号隔开<br>都为string类型，参数个数必须与方法参数一致 |
 | ServiceStop | | | 服务停止时执行 |
-| | OnStartItem | | 执行任务项|
-| | | Assembly | 程序集名称|
-| | | MethodName | 要执行方法名，FullName |
+| | MethodItem | | 同ServiceStart的MethodItem|
 | QuartzJob | | | 调度任务 |
 |  | JobItem |  | 调度任务项 |
 | | | JobKey | 调度任务的key，唯一|

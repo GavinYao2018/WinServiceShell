@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Common.WinServices.Common
 {
-
     public class CommonWinService
     {
         public string ServiceName { get; set; }
@@ -27,10 +26,18 @@ namespace Common.WinServices.Common
         /// <summary>
         /// OnStart列表
         /// </summary>
-        public List<OnStartItem> OnStartItemList { get; set; }
+        public List<MethodItem> OnStartItemList { get; set; }
     }
 
-    public class OnStartItem
+    public class ServiceStop
+    {
+        /// <summary>
+        /// OnStart列表
+        /// </summary>
+        public List<MethodItem> OnStopItemList { get; set; }
+    }
+
+    public class MethodItem
     {
         /// <summary>
         /// 程序集
@@ -40,7 +47,12 @@ namespace Common.WinServices.Common
         /// <summary>
         /// 方法名
         /// </summary>
-        public string MethodName { get; set; }        
+        public string MethodName { get; set; }
+        
+        /// <summary>
+        /// 自定义参数，使用,隔开
+        /// </summary>
+        public string Parameters { get; set; }
     }
 
     public class QuartzJob
@@ -82,26 +94,5 @@ namespace Common.WinServices.Common
         /// 自定义参数，使用,隔开
         /// </summary>
         public string Parameters { get; set; }
-    }
-
-    public class ServiceStop
-    {
-        /// <summary>
-        /// OnStart列表
-        /// </summary>
-        public List<OnStopItem> OnStopItemList { get; set; }
-    }
-
-    public class OnStopItem
-    {
-        /// <summary>
-        /// 程序集
-        /// </summary>
-        public string Assembly { get; set; }
-        
-        /// <summary>
-        /// 方法名
-        /// </summary>
-        public string MethodName { get; set; }
-    }
+    } 
 }

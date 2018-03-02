@@ -34,13 +34,16 @@ namespace Job.Test
         }
 
 
-        public void OnStart()
+        public void OnStart(string name, string i)
         {
-            Logger.Info("JobTest1.txt", "启动时执行");
+            var msg = $"启动时执行. name={name}, i={i}";
+            Logger.Info("JobTest1.txt", msg);
         }
+
         public void OnStop()
         {
-            Logger.Info("JobTest1.txt", "结束时执行");
+            var msg = "结束时执行";
+            Logger.Info("JobTest1.txt", msg);
         }
     }
 }
