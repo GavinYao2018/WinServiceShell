@@ -5,6 +5,7 @@ namespace Job.Test
 {
     public class JobTest2 : IJob
     {
+        static string logName = "JobTest2.txt";
         public void Execute(IJobExecutionContext context)
         {
             Write();
@@ -13,7 +14,7 @@ namespace Job.Test
         public void Write()
         {
             var str = Guid.NewGuid().ToString("N");
-            Logger.Info("JobTest2.txt", str);
+            Logger.Info(logName, str);
         }
     }
 }

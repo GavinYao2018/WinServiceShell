@@ -5,17 +5,16 @@
   <CommonWinService ServiceName="CommonJobExample">
     <ServiceStart>
       <!--
-      1.必须使用非静态类
-      2.必须使用无参构造方法，无参方法
+      1.必须保留无参构造方法
       -->
       <MethodItem Assembly="Job.Test" MethodName="Job.Test.JobTest1.OnStart" Parameters="yao,100"/>
       <MethodItem Assembly="MethodTest" MethodName="MethodTest.MethodTest1.OnStart" />
+      <MethodItem Assembly="MethodTest" MethodName="MethodTest.MethodTest1.OnStart2" Parameters="abc,200"/>
     </ServiceStart>
 
     <ServiceStop>
       <!--
-      1.必须使用非静态类
-      2.必须使用无参构造方法，无参方法
+      1.必须保留无参构造方法
       -->
       <MethodItem Assembly="Job.Test" MethodName="Job.Test.JobTest1.OnStop"></MethodItem>
       <MethodItem Assembly="MethodTest" MethodName="MethodTest.MethodTest1.OnStop" Parameters="hui,1000"></MethodItem>

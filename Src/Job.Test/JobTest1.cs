@@ -5,6 +5,7 @@ namespace Job.Test
 {
     public class JobTest1 : IJob
     {
+        static string logName = "JobTest1.txt";
         public void Execute(IJobExecutionContext context)
         {
             string name = "name"; //默认值
@@ -30,20 +31,20 @@ namespace Job.Test
         public void Write(string name, string i)
         {
             var str = $"name = {name}, i = {i}, {Guid.NewGuid().ToString("N")}";
-            Logger.Info("JobTest1.txt", str);
+            Logger.Info(logName, str);
         }
 
 
         public void OnStart(string name, string i)
         {
             var msg = $"启动时执行. name={name}, i={i}";
-            Logger.Info("JobTest1.txt", msg);
+            Logger.Info(logName, msg);
         }
 
         public void OnStop()
         {
             var msg = "结束时执行";
-            Logger.Info("JobTest1.txt", msg);
+            Logger.Info(logName, msg);
         }
     }
 }
