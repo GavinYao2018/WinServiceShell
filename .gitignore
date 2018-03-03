@@ -37,3 +37,4 @@ disconf/download
 bin
 obj
 config/tmp/*
+*.suo
